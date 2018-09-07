@@ -130,6 +130,8 @@ and send it to the appropriate ```OnvifDevice```:
 onvifManager.sendOnvifRequest(device, new PTZRequest());
 ```
 
+Use the ```OnvifResponseListener``` to receive responses from your custom requests.
+
 ## Android
 ---
 In order to receive multicasts packets on your Android device, you'll have to acquire a lock on your WifiManager before making a discovery. Make sure to release the lock once the discovery is completed. More information can be found here: https://developer.android.com/reference/android/net/wifi/WifiManager.MulticastLock
@@ -166,6 +168,10 @@ compile 'be.teletask.onvif:onvif:1.0.0'
  - Implementation ONVIF version management
  - Implementation PTZ
 
+## Pull Requests
+---
+Feel free to send pull requests. 
+
 License
 =======
 
@@ -183,5 +189,5 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
     
-[2]: https://search.maven.org/remote_content?g=com.squareup.retrofit2&a=retrofit&v=LATEST
+[2]: https://bintray.com/tomasverhelst/ONVIF-Java/ONVIF-Java/1.0.0#files/be/teletask/onvif/onvif/1.0.0
 

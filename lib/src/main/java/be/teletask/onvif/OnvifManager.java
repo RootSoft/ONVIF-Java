@@ -46,7 +46,7 @@ public class OnvifManager implements OnvifResponseListener {
         executor.sendRequest(device, request);
     }
 
-    public void getMediaStreams(@NotNull OnvifDevice device, @NotNull OnvifMediaProfile profile, @NotNull OnvifMediaStreamURIListener listener) {
+    public void getMediaStreamURI(@NotNull OnvifDevice device, @NotNull OnvifMediaProfile profile, @NotNull OnvifMediaStreamURIListener listener) {
         OnvifRequest request = new GetMediaStreamRequest(profile, listener);
         executor.sendRequest(device, request);
     }

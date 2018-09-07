@@ -5,16 +5,15 @@ package be.teletask.onvif.models;
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
 public enum OnvifType {
-    GET_SERVICES(0, "http://www.onvif.org/ver10/device/wsdl"),
-    GET_DEVICE_INFORMATION(1, "http://www.onvif.org/ver10/device/wsdl"),
-    GET_MEDIA_PROFILES(2, "http://www.onvif.org/ver10/media/wsdl"),
-    GET_STREAM_URI(3, "http://www.onvif.org/ver10/media/wsdl");
+    CUSTOM(""),
+    GET_SERVICES("http://www.onvif.org/ver10/device/wsdl"),
+    GET_DEVICE_INFORMATION("http://www.onvif.org/ver10/device/wsdl"),
+    GET_MEDIA_PROFILES("http://www.onvif.org/ver10/media/wsdl"),
+    GET_STREAM_URI("http://www.onvif.org/ver10/media/wsdl");
 
-    public final int id;
     public final String namespace;
 
-    OnvifType(int id, String namespace) {
-        this.id = id;
+    OnvifType(String namespace) {
         this.namespace = namespace;
     }
 
