@@ -1,5 +1,6 @@
 # ONVIF-Java
 ---
+[ ![Download](https://api.bintray.com/packages/tomasverhelst/ONVIF-Java/ONVIF-Java/images/download.svg) ](https://bintray.com/tomasverhelst/ONVIF-Java/ONVIF-Java/_latestVersion)
 
 <p align="center"> 
 <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/112012/onvif-converted.png?itok=yqR6_a6G">
@@ -11,7 +12,7 @@ ONVIF is an open industry forum that provides and promotes standardized interfac
 ## Features
 
   - **ONVIF & UPnP discovery**
-  - ONVIF device management (Services, device information, media profiles, raw media stream uri,...)
+  - ONVIF device management (Services, device information, media profiles, raw media stream uri)
   - UPnP device information
   - Easily extendable with your own requests
   - **Android supported!**
@@ -100,6 +101,28 @@ onvifManager.getMediaStreamURI(device, mediaProfiles.get(0), new OnvifMediaStrea
     public void onMediaStreamURIReceived(@Nonnull OnvifDevice device, 
                                         @Nonnull OnvifMediaProfile profile, @Nonnull String uri) {
         
+    }
+});
+```
+
+## UPnP
+---
+
+With the ```UPnPManager``` it is possible to retrieve device information from a locally connected UPnP device. A ```UPnPDevice``` can be created manually or discovered from the ```DiscoveryManager``` using ```discovery.discover(DiscoveryMode.UPNP)```
+
+```java
+UPnPDevice device = new UPnPDevice("192.168.0.160");
+device.setLocation("http://192.168.0.160:49152/rootdesc1.xml");
+UPnPManager uPnPManager = new UPnPManager();
+uPnPManager.getDeviceInformation(device, new UPnPDeviceInformationListener() {
+    @Override
+    public void onDeviceInformationReceived(@Nonnull UPnPDevice device, 
+                                            @Nonnull UPnPDeviceInformation information) {
+        Log.i(TAG, device.getHostName() + ": " + information.getFriendlyName());
+    }
+    @Override
+    public void onError(@Nonnull UPnPDevice onvifDevice, int errorCode, String errorMessage) {
+        Log.e(TAG, "Error: " + errorMessage);
     }
 });
 ```
