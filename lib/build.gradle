@@ -59,7 +59,7 @@ ext {
     siteUrl = 'https://github.com/RootSoft/ONVIF-Java'
     gitUrl = 'https://github.com/RootSoft/ONVIF-Java.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'tomasverhelst'
     developerName = 'Tomas Verhelst'
