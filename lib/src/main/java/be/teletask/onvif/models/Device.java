@@ -21,11 +21,11 @@ public abstract class Device implements Comparable<Device> {
     private boolean connected;
 
     //Constructors
-    Device(@NotNull String host) {
+    public Device(@NotNull String host) {
         this(host, "", "");
     }
 
-    Device(@NotNull String host, @NotNull String username, @NotNull String password) {
+    public Device(@NotNull String host, @NotNull String username, @NotNull String password) {
         this.host = buildUrl(host);
         this.username = username;
         this.password = password;

@@ -52,7 +52,7 @@ public class OnvifDiscovery {
         this(DiscoveryMode.ONVIF);
     }
 
-    private OnvifDiscovery(@NotNull DiscoveryMode mode) {
+    public OnvifDiscovery(@NotNull DiscoveryMode mode) {
         this.mode = mode;
     }
 

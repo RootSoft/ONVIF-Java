@@ -18,7 +18,7 @@ public class OnvifPacket {
     private byte[] data;
 
     //Constructors
-    OnvifPacket() {
+    public OnvifPacket() {
         this("", new byte[0]);
     }
 
@@ -26,7 +26,7 @@ public class OnvifPacket {
         this(name, new byte[0]);
     }
 
-    private OnvifPacket(String name, byte[] data) {
+    public OnvifPacket(String name, byte[] data) {
         this.name = name;
         this.data = data;
     }

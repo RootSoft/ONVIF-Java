@@ -23,7 +23,7 @@ public class OnvifDevice extends Device {
         this(hostName, "", "");
     }
 
-    private OnvifDevice(@NotNull String hostName, @NotNull String username, @NotNull String password) {
+    public OnvifDevice(@NotNull String hostName, @NotNull String username, @NotNull String password) {
         super(hostName, username, password);
         path = new OnvifServices();
         addresses = new ArrayList<>();
