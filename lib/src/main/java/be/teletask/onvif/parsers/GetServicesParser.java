@@ -4,7 +4,7 @@ import be.teletask.onvif.OnvifUtils;
 import be.teletask.onvif.models.OnvifServices;
 import be.teletask.onvif.models.OnvifType;
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -18,7 +18,7 @@ import java.io.StringReader;
 public class GetServicesParser extends OnvifParser<OnvifServices> {
 
     @Override
-    public OnvifServices parse(@NotNull OnvifResponse response) {
+    public OnvifServices parse(OnvifResponse response) {
         OnvifServices path = new OnvifServices();
 
         try {

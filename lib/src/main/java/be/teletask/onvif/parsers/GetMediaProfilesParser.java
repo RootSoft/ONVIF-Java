@@ -2,7 +2,7 @@ package be.teletask.onvif.parsers;
 
 import be.teletask.onvif.models.OnvifMediaProfile;
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -24,7 +24,7 @@ public class GetMediaProfilesParser extends OnvifParser<List<OnvifMediaProfile>>
     private static final String ATTR_NAME = "Name";
 
     @Override
-    public List<OnvifMediaProfile> parse(@NotNull OnvifResponse response) {
+    public List<OnvifMediaProfile> parse(OnvifResponse response) {
         List<OnvifMediaProfile> profiles = new ArrayList<>();
 
         try {

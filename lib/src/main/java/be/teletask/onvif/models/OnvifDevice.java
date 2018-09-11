@@ -1,6 +1,6 @@
 package be.teletask.onvif.models;
 
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +19,11 @@ public class OnvifDevice extends Device {
     private List<String> addresses;
 
     //Constructors
-    public OnvifDevice(@NotNull String hostName) {
+    public OnvifDevice(String hostName) {
         this(hostName, "", "");
     }
 
-    public OnvifDevice(@NotNull String hostName, @NotNull String username, @NotNull String password) {
+    public OnvifDevice(String hostName, String username, String password) {
         super(hostName, username, password);
         path = new OnvifServices();
         addresses = new ArrayList<>();

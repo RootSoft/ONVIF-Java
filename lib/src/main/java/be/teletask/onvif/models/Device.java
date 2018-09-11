@@ -1,6 +1,6 @@
 package be.teletask.onvif.models;
 
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.Locale;
 
@@ -21,11 +21,11 @@ public abstract class Device implements Comparable<Device> {
     private boolean connected;
 
     //Constructors
-    public Device(@NotNull String host) {
+    public Device(String host) {
         this(host, "", "");
     }
 
-    public Device(@NotNull String host, @NotNull String username, @NotNull String password) {
+    public Device(String host, String username, String password) {
         this.host = buildUrl(host);
         this.username = username;
         this.password = password;
@@ -62,7 +62,7 @@ public abstract class Device implements Comparable<Device> {
     }
 
     @Override
-    public int compareTo(@NotNull Device device) {
+    public int compareTo(Device device) {
         return getHostName().compareTo(device.getHostName());
     }
 

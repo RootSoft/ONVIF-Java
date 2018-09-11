@@ -2,7 +2,7 @@ package be.teletask.onvif.listeners;
 
 import be.teletask.onvif.models.OnvifDevice;
 import be.teletask.onvif.models.OnvifDeviceInformation;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 03/09/2018.
@@ -10,6 +10,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface OnvifDeviceInformationListener {
 
-    void onDeviceInformationReceived(@NotNull OnvifDevice device, @NotNull OnvifDeviceInformation deviceInformation);
+    void onDeviceInformationReceived(OnvifDevice device, OnvifDeviceInformation deviceInformation);
 
 }

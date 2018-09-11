@@ -5,7 +5,7 @@ import be.teletask.onvif.listeners.DiscoveryListener;
 import be.teletask.onvif.models.Device;
 import be.teletask.onvif.models.DiscoveryPacket;
 import be.teletask.onvif.models.OnvifPacket;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.IOException;
 import java.net.*;
@@ -52,7 +52,7 @@ public class OnvifDiscovery {
         this(DiscoveryMode.ONVIF);
     }
 
-    public OnvifDiscovery(@NotNull DiscoveryMode mode) {
+    public OnvifDiscovery(DiscoveryMode mode) {
         this.mode = mode;
     }
 
@@ -89,7 +89,7 @@ public class OnvifDiscovery {
      * Discoveries are sent over multicast, replies are sent over unicast (both in UDP)
      * It means that the device will receive the discovery query, but it will not be able to answer back to the discovery tool if the peers are working on different subnets.
      */
-    void probe(@NotNull DiscoveryMode mode, DiscoveryListener discoveryListener) {
+    void probe(DiscoveryMode mode, DiscoveryListener discoveryListener) {
         //Sets the mode and discovery callback
         this.mode = mode;
         this.discoveryListener = discoveryListener;

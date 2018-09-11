@@ -1,7 +1,7 @@
 package be.teletask.onvif.upnp;
 
 import be.teletask.onvif.models.UPnPDevice;
-import org.jetbrains.annotations.NotNull;
+
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -34,7 +34,7 @@ public class UPnPManager implements UPnPResponseListener {
      *
      * @param device
      */
-    public void getDeviceInformation(@NotNull UPnPDevice device, @NotNull UPnPDeviceInformationListener listener) {
+    public void getDeviceInformation(UPnPDevice device, UPnPDeviceInformationListener listener) {
         executor.getDeviceInformation(device, listener);
     }
 
@@ -43,12 +43,12 @@ public class UPnPManager implements UPnPResponseListener {
     }
 
     @Override
-    public void onResponse(@NotNull UPnPDevice onvifDevice) {
+    public void onResponse(UPnPDevice onvifDevice) {
 
     }
 
     @Override
-    public void onError(@NotNull UPnPDevice onvifDevice, int errorCode, String errorMessage) {
+    public void onError(UPnPDevice onvifDevice, int errorCode, String errorMessage) {
 
     }
 

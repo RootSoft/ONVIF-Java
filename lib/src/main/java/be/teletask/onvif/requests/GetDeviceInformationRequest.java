@@ -2,7 +2,7 @@ package be.teletask.onvif.requests;
 
 import be.teletask.onvif.listeners.OnvifDeviceInformationListener;
 import be.teletask.onvif.models.OnvifType;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 04/09/2018.
@@ -17,7 +17,7 @@ public class GetDeviceInformationRequest implements OnvifRequest {
     private final OnvifDeviceInformationListener listener;
 
     //Constructors
-    public GetDeviceInformationRequest(@NotNull OnvifDeviceInformationListener listener) {
+    public GetDeviceInformationRequest(OnvifDeviceInformationListener listener) {
         super();
         this.listener = listener;
     }

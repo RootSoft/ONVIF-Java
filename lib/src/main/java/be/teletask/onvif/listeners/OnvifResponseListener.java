@@ -2,7 +2,7 @@ package be.teletask.onvif.listeners;
 
 import be.teletask.onvif.models.OnvifDevice;
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 03/09/2018.
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface OnvifResponseListener {
 
-    void onResponse(@NotNull OnvifDevice onvifDevice, @NotNull OnvifResponse response);
+    void onResponse(OnvifDevice onvifDevice, OnvifResponse response);
 
-    void onError(@NotNull OnvifDevice onvifDevice, int errorCode, String errorMessage);
+    void onError(OnvifDevice onvifDevice, int errorCode, String errorMessage);
 }

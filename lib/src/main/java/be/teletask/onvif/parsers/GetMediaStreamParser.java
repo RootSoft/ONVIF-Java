@@ -1,7 +1,7 @@
 package be.teletask.onvif.parsers;
 
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -19,7 +19,7 @@ public class GetMediaStreamParser extends OnvifParser<String> {
     private static final String KEY_URI = "Uri";
 
     @Override
-    public String parse(@NotNull OnvifResponse response) {
+    public String parse(OnvifResponse response) {
         String uri = "";
         try {
             getXpp().setInput(new StringReader(response.getXml()));

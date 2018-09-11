@@ -2,7 +2,7 @@ package be.teletask.onvif.listeners;
 
 import be.teletask.onvif.models.OnvifDevice;
 import be.teletask.onvif.models.OnvifMediaProfile;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface OnvifMediaProfilesListener {
 
-    void onMediaProfilesReceived(@NotNull OnvifDevice device, @NotNull List<OnvifMediaProfile> mediaProfiles);
+    void onMediaProfilesReceived(OnvifDevice device, List<OnvifMediaProfile> mediaProfiles);
 
 }

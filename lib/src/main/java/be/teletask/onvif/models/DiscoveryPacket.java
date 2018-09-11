@@ -2,7 +2,7 @@ package be.teletask.onvif.models;
 
 import be.teletask.onvif.DiscoveryMode;
 import be.teletask.onvif.OnvifXMLBuilder;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.Locale;
 
@@ -33,7 +33,7 @@ public class DiscoveryPacket extends OnvifPacket {
         this(uuid, DiscoveryMode.ONVIF);
     }
 
-    public DiscoveryPacket(@NotNull String uuid, DiscoveryMode mode) {
+    public DiscoveryPacket(String uuid, DiscoveryMode mode) {
         this.uuid = uuid;
         this.mode = mode;
     }

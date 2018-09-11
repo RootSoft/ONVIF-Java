@@ -5,7 +5,7 @@ import be.teletask.onvif.models.OnvifDevice;
 import be.teletask.onvif.models.OnvifMediaProfile;
 import be.teletask.onvif.requests.*;
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 03/09/2018.
@@ -31,27 +31,27 @@ public class OnvifManager implements OnvifResponseListener {
     }
 
     //Methods
-    public void getServices(@NotNull OnvifDevice device, @NotNull OnvifServicesListener listener) {
+    public void getServices(OnvifDevice device, OnvifServicesListener listener) {
         OnvifRequest request = new GetServicesRequest(listener);
         executor.sendRequest(device, request);
     }
 
-    public void getDeviceInformation(@NotNull OnvifDevice device, @NotNull OnvifDeviceInformationListener listener) {
+    public void getDeviceInformation(OnvifDevice device, OnvifDeviceInformationListener listener) {
         OnvifRequest request = new GetDeviceInformationRequest(listener);
         executor.sendRequest(device, request);
     }
 
-    public void getMediaProfiles(@NotNull OnvifDevice device, @NotNull OnvifMediaProfilesListener listener) {
+    public void getMediaProfiles(OnvifDevice device, OnvifMediaProfilesListener listener) {
         OnvifRequest request = new GetMediaProfilesRequest(listener);
         executor.sendRequest(device, request);
     }
 
-    public void getMediaStreamURI(@NotNull OnvifDevice device, @NotNull OnvifMediaProfile profile, @NotNull OnvifMediaStreamURIListener listener) {
+    public void getMediaStreamURI(OnvifDevice device, OnvifMediaProfile profile, OnvifMediaStreamURIListener listener) {
         OnvifRequest request = new GetMediaStreamRequest(profile, listener);
         executor.sendRequest(device, request);
     }
 
-    public void sendOnvifRequest(@NotNull OnvifDevice device, @NotNull OnvifRequest request) {
+    public void sendOnvifRequest(OnvifDevice device, OnvifRequest request) {
         executor.sendRequest(device, request);
     }
 
@@ -68,13 +68,13 @@ public class OnvifManager implements OnvifResponseListener {
     }
 
     @Override
-    public void onResponse(@NotNull OnvifDevice onvifDevice, @NotNull OnvifResponse response) {
+    public void onResponse(OnvifDevice onvifDevice, OnvifResponse response) {
         if (onvifResponseListener != null)
             onvifResponseListener.onResponse(onvifDevice, response);
     }
 
     @Override
-    public void onError(@NotNull OnvifDevice onvifDevice, int errorCode, String errorMessage) {
+    public void onError(OnvifDevice onvifDevice, int errorCode, String errorMessage) {
         if (onvifResponseListener != null)
             onvifResponseListener.onError(onvifDevice, errorCode, errorMessage);
     }

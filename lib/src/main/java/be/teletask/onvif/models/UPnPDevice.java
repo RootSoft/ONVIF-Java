@@ -1,7 +1,7 @@
 package be.teletask.onvif.models;
 
 import be.teletask.onvif.upnp.UPnPDeviceInformation;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 06/09/2018.
@@ -22,20 +22,20 @@ public class UPnPDevice extends Device {
 
     //Constructors
 
-    public UPnPDevice(@NotNull String hostName) {
+    public UPnPDevice(String hostName) {
         this(hostName, "", "", "", "", "");
     }
 
-    public UPnPDevice(@NotNull String hostName, @NotNull String header, @NotNull String location,
-                      @NotNull String server, @NotNull String usn, @NotNull String st) {
+    public UPnPDevice(String hostName, String header, String location,
+                      String server, String usn, String st) {
         super(hostName);
         deviceInformation = new UPnPDeviceInformation();
         initHeaders(header, location, server, usn, st);
     }
 
     //Methods
-    private void initHeaders(@NotNull String header, @NotNull String location,
-                             @NotNull String server, @NotNull String usn, @NotNull String st) {
+    private void initHeaders(String header, String location,
+                             String server, String usn, String st) {
         this.header = header;
         this.location = location;
         this.server = server;

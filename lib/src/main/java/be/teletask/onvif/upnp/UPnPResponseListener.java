@@ -1,7 +1,7 @@
 package be.teletask.onvif.upnp;
 
 import be.teletask.onvif.models.UPnPDevice;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 03/09/2018.
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface UPnPResponseListener {
 
-    void onResponse(@NotNull UPnPDevice onvifDevice);
+    void onResponse(UPnPDevice onvifDevice);
 
-    void onError(@NotNull UPnPDevice onvifDevice, int errorCode, String errorMessage);
+    void onError(UPnPDevice onvifDevice, int errorCode, String errorMessage);
 }

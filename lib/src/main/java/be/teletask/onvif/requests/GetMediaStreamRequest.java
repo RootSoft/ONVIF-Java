@@ -3,7 +3,7 @@ package be.teletask.onvif.requests;
 import be.teletask.onvif.listeners.OnvifMediaStreamURIListener;
 import be.teletask.onvif.models.OnvifMediaProfile;
 import be.teletask.onvif.models.OnvifType;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 04/09/2018.
@@ -19,7 +19,7 @@ public class GetMediaStreamRequest implements OnvifRequest {
     private final OnvifMediaStreamURIListener listener;
 
     //Constructors
-    public GetMediaStreamRequest(@NotNull OnvifMediaProfile mediaProfile, @NotNull OnvifMediaStreamURIListener listener) {
+    public GetMediaStreamRequest(OnvifMediaProfile mediaProfile, OnvifMediaStreamURIListener listener) {
         super();
         this.mediaProfile = mediaProfile;
         this.listener = listener;

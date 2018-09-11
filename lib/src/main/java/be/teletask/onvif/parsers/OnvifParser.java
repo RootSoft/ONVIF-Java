@@ -1,7 +1,7 @@
 package be.teletask.onvif.parsers;
 
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -45,5 +45,5 @@ public abstract class OnvifParser<T> {
         return xpp;
     }
 
-    public abstract T parse(@NotNull OnvifResponse response);
+    public abstract T parse(OnvifResponse response);
 }

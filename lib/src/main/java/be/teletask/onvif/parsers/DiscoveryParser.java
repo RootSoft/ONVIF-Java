@@ -7,7 +7,7 @@ import be.teletask.onvif.models.DiscoveryType;
 import be.teletask.onvif.models.OnvifDevice;
 import be.teletask.onvif.models.UPnPDevice;
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -43,7 +43,7 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
     //Methods
 
     @Override
-    public List<Device> parse(@NotNull OnvifResponse response) {
+    public List<Device> parse(OnvifResponse response) {
         List<Device> devices = new ArrayList<>();
 
         switch (mode) {
@@ -58,7 +58,7 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
         return devices;
     }
 
-    private List<Device> parseOnvif(@NotNull OnvifResponse response) {
+    private List<Device> parseOnvif(OnvifResponse response) {
         ArrayList<Device> devices = new ArrayList<>();
         try {
             getXpp().setInput(new StringReader(response.getXml()));
@@ -84,7 +84,7 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
         return devices;
     }
 
-    private Device parseUPnP(@NotNull OnvifResponse response) {
+    private Device parseUPnP(OnvifResponse response) {
         String header = response.getXml();
         String location = parseUPnPHeader(header, KEY_UPNP_LOCATION);
         String server = parseUPnPHeader(header, KEY_UPNP_SERVER);

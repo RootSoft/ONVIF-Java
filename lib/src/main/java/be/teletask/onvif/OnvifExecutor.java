@@ -16,7 +16,7 @@ import com.burgstaller.okhttp.digest.Credentials;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 import okhttp3.*;
 import okio.Buffer;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.IOException;
 import java.util.Map;
@@ -42,7 +42,7 @@ public class OnvifExecutor {
 
     //Constructors
 
-    OnvifExecutor(@NotNull OnvifResponseListener onvifResponseListener) {
+    OnvifExecutor(OnvifResponseListener onvifResponseListener) {
         this.onvifResponseListener = onvifResponseListener;
         credentials = new Credentials("username", "password");
         DigestAuthenticator authenticator = new DigestAuthenticator(credentials);
@@ -67,7 +67,7 @@ public class OnvifExecutor {
      * @param device
      * @param request
      */
-    void sendRequest(@NotNull OnvifDevice device, @NotNull OnvifRequest request) {
+    void sendRequest(OnvifDevice device, OnvifRequest request) {
         credentials.setUserName(device.getUsername());
         credentials.setPassword(device.getPassword());
         reqBody = RequestBody.create(reqBodyType, OnvifXMLBuilder.getSoapHeader() + request.getXml() + OnvifXMLBuilder.getEnvelopeEnd());
@@ -95,7 +95,7 @@ public class OnvifExecutor {
                 .enqueue(new Callback() {
 
                     @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response xmlResponse) throws IOException {
+                    public void onResponse(Call call, Response xmlResponse) throws IOException {
 
                         OnvifResponse response = new OnvifResponse(request);
                         ResponseBody xmlBody = xmlResponse.body();
@@ -115,7 +115,7 @@ public class OnvifExecutor {
                     }
 
                     @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    public void onFailure(Call call, IOException e) {
                         onvifResponseListener.onError(device, -1, e.getMessage());
                     }
 

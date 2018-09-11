@@ -2,7 +2,7 @@ package be.teletask.onvif.parsers;
 
 import be.teletask.onvif.models.OnvifDeviceInformation;
 import be.teletask.onvif.responses.OnvifResponse;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -24,7 +24,7 @@ public class GetDeviceInformationParser extends OnvifParser<OnvifDeviceInformati
     private static final String KEY_HARDWARE_ID = "HardwareId";
 
     @Override
-    public OnvifDeviceInformation parse(@NotNull OnvifResponse response) {
+    public OnvifDeviceInformation parse(OnvifResponse response) {
         OnvifDeviceInformation deviceInformation = new OnvifDeviceInformation();
 
         try {

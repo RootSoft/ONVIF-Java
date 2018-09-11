@@ -2,7 +2,7 @@ package be.teletask.onvif.parsers;
 
 import be.teletask.onvif.responses.OnvifResponse;
 import be.teletask.onvif.upnp.UPnPDeviceInformation;
-import org.jetbrains.annotations.NotNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -33,7 +33,7 @@ public class UPnPParser extends OnvifParser<UPnPDeviceInformation> {
     //Attributes
 
     @Override
-    public UPnPDeviceInformation parse(@NotNull OnvifResponse response) {
+    public UPnPDeviceInformation parse(OnvifResponse response) {
         UPnPDeviceInformation deviceInformation = new UPnPDeviceInformation();
 
         try {

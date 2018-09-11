@@ -5,7 +5,7 @@ import be.teletask.onvif.parsers.UPnPParser;
 import be.teletask.onvif.responses.OnvifResponse;
 import okhttp3.*;
 import okio.Buffer;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +25,7 @@ public class UPnPExecutor {
 
     //Constructors
 
-    UPnPExecutor(@NotNull UPnPResponseListener responseListener) {
+    UPnPExecutor(UPnPResponseListener responseListener) {
         this.responseListener = responseListener;
 
         client = new OkHttpClient.Builder()
@@ -40,20 +40,20 @@ public class UPnPExecutor {
     /**
      * Sends a request to a UPnP device.
      */
-    public void sendRequest(@NotNull UPnPDevice device) {
+    public void sendRequest(UPnPDevice device) {
         performXmlRequest(device, buildUPnPRequest(device));
     }
 
     /**
      * Sends a request to a UPnP device.
      */
-    void getDeviceInformation(@NotNull UPnPDevice device, @NotNull UPnPDeviceInformationListener listener) {
+    void getDeviceInformation(UPnPDevice device, UPnPDeviceInformationListener listener) {
         Request request = buildUPnPRequest(device);
         client.newCall(request)
                 .enqueue(new Callback() {
 
                     @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response xmlResponse) throws IOException {
+                    public void onResponse(Call call, Response xmlResponse) throws IOException {
                         ResponseBody xmlBody = xmlResponse.body();
 
                         if (xmlResponse.code() == 200 && xmlBody != null) {
@@ -71,7 +71,7 @@ public class UPnPExecutor {
                     }
 
                     @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    public void onFailure(Call call, IOException e) {
                         listener.onError(device, -1, e.getMessage());
                     }
 
@@ -99,7 +99,7 @@ public class UPnPExecutor {
                 .enqueue(new Callback() {
 
                     @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response xmlResponse) throws IOException {
+                    public void onResponse(Call call, Response xmlResponse) throws IOException {
                         ResponseBody xmlBody = xmlResponse.body();
 
                         if (xmlResponse.code() == 200 && xmlBody != null) {
@@ -115,7 +115,7 @@ public class UPnPExecutor {
                     }
 
                     @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    public void onFailure(Call call, IOException e) {
                         responseListener.onError(device, -1, e.getMessage());
                     }
 

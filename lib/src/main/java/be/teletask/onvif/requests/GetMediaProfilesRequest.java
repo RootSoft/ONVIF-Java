@@ -2,7 +2,7 @@ package be.teletask.onvif.requests;
 
 import be.teletask.onvif.listeners.OnvifMediaProfilesListener;
 import be.teletask.onvif.models.OnvifType;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 04/09/2018.
@@ -17,7 +17,7 @@ public class GetMediaProfilesRequest implements OnvifRequest {
     private final OnvifMediaProfilesListener listener;
 
     //Constructors
-    public GetMediaProfilesRequest(@NotNull OnvifMediaProfilesListener listener) {
+    public GetMediaProfilesRequest(OnvifMediaProfilesListener listener) {
         super();
         this.listener = listener;
     }

@@ -1,7 +1,7 @@
 package be.teletask.onvif;
 
 import be.teletask.onvif.listeners.DiscoveryListener;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.net.InetAddress;
 import java.util.List;
@@ -36,7 +36,7 @@ public class DiscoveryManager {
      *
      * @param discoveryListener
      */
-    public void discover(@NotNull DiscoveryListener discoveryListener) {
+    public void discover(DiscoveryListener discoveryListener) {
         discover(DiscoveryMode.ONVIF, discoveryListener);
     }
 
@@ -52,7 +52,7 @@ public class DiscoveryManager {
      *
      * @param discoveryListener
      */
-    public void discover(DiscoveryMode mode, @NotNull DiscoveryListener discoveryListener) {
+    public void discover(DiscoveryMode mode, DiscoveryListener discoveryListener) {
         discovery.probe(mode, discoveryListener);
     }
 

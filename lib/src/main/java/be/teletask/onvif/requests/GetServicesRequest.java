@@ -2,7 +2,7 @@ package be.teletask.onvif.requests;
 
 import be.teletask.onvif.listeners.OnvifServicesListener;
 import be.teletask.onvif.models.OnvifType;
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by Tomas Verhelst on 04/09/2018.
@@ -17,7 +17,7 @@ public class GetServicesRequest implements OnvifRequest {
     private final OnvifServicesListener listener;
 
     //Constructors
-    public GetServicesRequest(@NotNull OnvifServicesListener listener) {
+    public GetServicesRequest(OnvifServicesListener listener) {
         super();
         this.listener = listener;
     }
