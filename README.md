@@ -1,6 +1,7 @@
 # ONVIF-Java
 ---
-[ ![Download](https://api.bintray.com/packages/tomasverhelst/ONVIF-Java/ONVIF-Java/images/download.svg) ](https://bintray.com/tomasverhelst/ONVIF-Java/ONVIF-Java/_latestVersion)
+[![](https://jitpack.io/v/RootSoft/ONVIF-Java.svg)](https://jitpack.io/#RootSoft/ONVIF-Java)
+
 
 <p align="center"> 
 <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/112012/onvif-converted.png?itok=yqR6_a6G">
@@ -16,6 +17,7 @@ ONVIF is an open industry forum that provides and promotes standardized interfac
   - UPnP device information
   - Easily extendable with your own requests
   - **Android supported!**
+  - [**Kotlin Coroutines support**](KOTLIN.md)
 
 ## Discovery
 ---
@@ -176,14 +178,14 @@ Download
 Download [the latest JAR][2] or grab via Maven:
 ```xml
 <dependency>
-  <groupId>be.teletask.onvif</groupId>
-  <artifactId>onvif</artifactId>
-  <version>1.0.0</version>
+  <groupId>com.github.rootsoft</groupId>
+  <artifactId>onvif-java</artifactId>
+  <version>1.0.3</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'be.teletask.onvif:onvif:1.0.0'
+compile 'com.github.rootsoft:onvif-java:1.0.3'
 ```
 
 ## Todos
