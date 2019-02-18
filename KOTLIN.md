@@ -11,7 +11,7 @@ ONVIF is an open industry forum that provides and promotes standardized interfac
 ## Kotlin coroutines
 
 All the Kotlin functions provided are `suspend` functions. All the examples below assumes that you are inside a coroutine context. If not wrap your code inside a `suspend` function or `runBlocking{}`. 
-I highly recommend to run those functions inside the [`IO`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-i-o.html) dispatcher since the calls are thread blocking.
+I highly recommend to run those functions inside the [`IO`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-i-o.html) dispatcher since these calls are thread blocking.
 
 ### Discovery
 Straight forward solution:
