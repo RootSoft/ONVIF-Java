@@ -107,6 +107,19 @@ onvifManager.getMediaStreamURI(device, mediaProfiles.get(0), new OnvifMediaStrea
 });
 ```
 
+### Media Snapshot URI
+Returns a raw media snapshot URI that remains valid indefinitely even if the profile is changed.
+
+```java
+onvifManager.getMediaSnapshotURI(device, mediaProfiles.get(0), new OnvifMediaStreamURIListener() {
+    @Override
+    public void onMediaSnapshotURIReceived(@Nonnull OnvifDevice device, 
+                                        @Nonnull OnvifMediaProfile profile, @Nonnull String uri) {
+        
+    }
+});
+```
+
 ## UPnP
 ---
 

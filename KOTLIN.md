@@ -43,5 +43,6 @@ val device = OnvifDevice(host, user, pswd)
 
 val infos = awaitDeviceInformations { om.getDeviceInformation(device, it) }
 val profiles = awaitDeviceMediaProfiles { om.getMediaProfiles(device, it) }
-val uri = awaitDeviceMediaStramUri { om.getMediaStreamURI(device, profiles.first(), it) }
+val streamUri = awaitDeviceMediaStreamUri { om.getMediaStreamURI(device, profiles.first(), it) }
+val snapshotUri = awaitDeviceMediaSnapshotUri { om.getMediaSnapshotURI(device, profiles.first(), it) }
 ```
