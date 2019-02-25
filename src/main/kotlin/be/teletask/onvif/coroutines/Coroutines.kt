@@ -1,12 +1,9 @@
 package be.teletask.onvif.coroutines
 
 import be.teletask.onvif.DiscoveryManager
-import be.teletask.onvif.OnvifManager
-import be.teletask.onvif.listeners.DiscoveryListener
-import be.teletask.onvif.listeners.OnvifDeviceInformationListener
-import be.teletask.onvif.listeners.OnvifMediaProfilesListener
-import be.teletask.onvif.listeners.OnvifMediaStreamURIListener
+import be.teletask.onvif.listeners.*
 import be.teletask.onvif.models.Device
+import be.teletask.onvif.models.OnvifDevice
 import be.teletask.onvif.models.OnvifDeviceInformation
 import be.teletask.onvif.models.OnvifMediaProfile
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -41,6 +38,14 @@ suspend fun awaitDeviceMediaStramUri(block: (OnvifMediaStreamURIListener) -> Uni
         suspendCancellableCoroutine { cont ->
             block(OnvifMediaStreamURIListener { _, _, uri ->
                 cont.resume(uri)
+            })
+        }
+
+suspend fun awaitDeviceMediaSnapshotUri(block: (OnvifMediaSnapshotURIListener) -> Unit): String =
+        suspendCancellableCoroutine { cont ->
+            block(object : OnvifMediaSnapshotURIListener {
+                override fun onMediaSnapshotURIReceived(device: OnvifDevice, profile: OnvifMediaProfile, url: String)
+                    = cont.resume(url)
             })
         }
 

@@ -9,7 +9,8 @@ public enum OnvifType {
     GET_SERVICES("http://www.onvif.org/ver10/device/wsdl"),
     GET_DEVICE_INFORMATION("http://www.onvif.org/ver10/device/wsdl"),
     GET_MEDIA_PROFILES("http://www.onvif.org/ver10/media/wsdl"),
-    GET_STREAM_URI("http://www.onvif.org/ver10/media/wsdl");
+    GET_STREAM_URI("http://www.onvif.org/ver10/media/wsdl"),
+    GET_SNAPSHOT_URI("http://www.onvif.org/ver10/media/wsdl");
 
     public final String namespace;
 

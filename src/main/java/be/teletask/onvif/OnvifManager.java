@@ -51,6 +51,11 @@ public class OnvifManager implements OnvifResponseListener {
         executor.sendRequest(device, request);
     }
 
+    public void getMediaSnapshotURI(OnvifDevice device, OnvifMediaProfile profile, OnvifMediaSnapshotURIListener listener) {
+        OnvifRequest request = new GetSnapshotUriRequest(profile, listener);
+        executor.sendRequest(device, request);
+    }
+
     public void sendOnvifRequest(OnvifDevice device, OnvifRequest request) {
         executor.sendRequest(device, request);
     }
