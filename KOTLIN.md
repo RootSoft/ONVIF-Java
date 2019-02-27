@@ -46,3 +46,15 @@ val profiles = awaitDeviceMediaProfiles { om.getMediaProfiles(device, it) }
 val streamUri = awaitDeviceMediaStreamUri { om.getMediaStreamURI(device, profiles.first(), it) }
 val snapshotUri = awaitDeviceMediaSnapshotUri { om.getMediaSnapshotURI(device, profiles.first(), it) }
 ```
+
+Or even more easy:
+```kotlin
+val device = OnvifDevice(host, user, pswd)
+val info = device.getInformations()
+val mediaProfiles = device.getMediaProfiles()
+val aStreamUri = device.getMediaStreamUri(mediaProfiles.first())
+val aSnapshotUri = device.getMediaSnapshotUri(mediaProfiles.first())
+
+val allStreamUris = device.getAllMediaStreamUris()
+val allSnapshotUris = device.getAllMediaSsnapshotUris()
+```

@@ -34,7 +34,7 @@ suspend fun discoverDevices(configure: DiscoveryManager.()->Unit = {}) = Discove
     }
 }
 
-suspend fun awaitDeviceMediaStramUri(block: (OnvifMediaStreamURIListener) -> Unit): String =
+suspend fun awaitDeviceMediaStreamUri(block: (OnvifMediaStreamURIListener) -> Unit): String =
         suspendCancellableCoroutine { cont ->
             block(OnvifMediaStreamURIListener { _, _, uri ->
                 cont.resume(uri)
@@ -53,12 +53,5 @@ suspend fun awaitDeviceMediaProfiles(block: (OnvifMediaProfilesListener) -> Unit
         suspendCancellableCoroutine { cont ->
             block(OnvifMediaProfilesListener { _, profiles ->
                 cont.resume(profiles)
-            })
-        }
-
-suspend fun awaitDeviceInformations(block: (OnvifDeviceInformationListener) -> Unit): OnvifDeviceInformation =
-        suspendCancellableCoroutine { cont ->
-            block(OnvifDeviceInformationListener { _, information ->
-                cont.resume(information)
             })
         }
