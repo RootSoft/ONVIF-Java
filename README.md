@@ -1,6 +1,7 @@
 # ONVIF-Java
----
-[![](https://jitpack.io/v/RootSoft/ONVIF-Java.svg)](https://jitpack.io/#RootSoft/ONVIF-Java)
+
+[![](https://jitpack.io/v/lamba92/ONVIF-Java.svg)](https://jitpack.io/#lamba92/ONVIF-Java)
+[![Build Status](https://travis-ci.org/lamba92/ONVIF-Java.svg?branch=master)](https://travis-ci.org/lamba92/ONVIF-Java)
 
 
 <p align="center"> 
@@ -185,20 +186,29 @@ private void lockMulticast() {
 }
 ```
 
-Download
---------
+## Download [![](https://jitpack.io/v/lamba92/ONVIF-Java.svg)](https://jitpack.io/#lamba92/ONVIF-Java)
 
-Download [the latest JAR][2] or grab via Maven:
+
 ```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+...
 <dependency>
-  <groupId>com.github.rootsoft</groupId>
-  <artifactId>onvif-java</artifactId>
-  <version>1.0.3</version>
+    <groupId>com.github.lamba92</groupId>
+    <artifactId>ONVIF-Java</artifactId>
+    <version>Tag</version>
 </dependency>
+
 ```
 or Gradle:
 ```groovy
-compile 'com.github.rootsoft:onvif-java:1.0.3'
+dependencies {
+    implementation 'com.github.lamba92:ONVIF-Java:{LATEST_TAG}'
+}
 ```
 
 ## Todos
