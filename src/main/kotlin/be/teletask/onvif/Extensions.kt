@@ -21,5 +21,5 @@ suspend fun OnvifDevice.getMediaSnapshotUri(profile: OnvifMediaProfile, om: Onvi
 suspend fun OnvifDevice.getAllMediaStreamUris(om: OnvifManager = defaultOnvifManager) = 
         getMediaProfiles(om).map { getMediaStreamUri(it, om) }
 
-suspend fun OnvifDevice.getAllMediaSsnapshotUris(om: OnvifManager = defaultOnvifManager) =
+suspend fun OnvifDevice.getAllMediaSnapshotUris(om: OnvifManager = defaultOnvifManager) =
         getMediaProfiles(om).map { getMediaSnapshotUri(it, om) }
