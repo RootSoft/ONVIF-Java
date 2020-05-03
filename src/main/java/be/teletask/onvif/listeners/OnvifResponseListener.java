@@ -1,6 +1,7 @@
 package be.teletask.onvif.listeners;
 
 import be.teletask.onvif.models.OnvifDevice;
+import be.teletask.onvif.requests.OnvifRequest;
 import be.teletask.onvif.responses.OnvifResponse;
 
 
@@ -12,5 +13,5 @@ public interface OnvifResponseListener {
 
     void onResponse(OnvifDevice onvifDevice, OnvifResponse response);
 
-    void onError(OnvifDevice onvifDevice, int errorCode, String errorMessage);
+    void onError(OnvifRequest.OnvifException e);
 }

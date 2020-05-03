@@ -10,7 +10,11 @@ public enum OnvifType {
     GET_DEVICE_INFORMATION("http://www.onvif.org/ver10/device/wsdl"),
     GET_MEDIA_PROFILES("http://www.onvif.org/ver10/media/wsdl"),
     GET_STREAM_URI("http://www.onvif.org/ver10/media/wsdl"),
-    GET_SNAPSHOT_URI("http://www.onvif.org/ver10/media/wsdl");
+    GET_SNAPSHOT_URI("http://www.onvif.org/ver10/media/wsdl"),
+    CONTINUOUS_MOVE("http://www.onvif.org/ver10/media/wsdl"),
+    ABSOLUTE_MOVE("http://www.onvif.org/ver10/media/wsdl"),
+    PTZ_STOP("http://www.onvif.org/ver10/media/wsdl"),
+    RELATIVE_MOVE("http://www.onvif.org/ver10/media/wsdl");
 
     public final String namespace;
 

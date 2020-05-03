@@ -1,7 +1,6 @@
 package be.teletask.onvif.models;
 
 
-
 import java.util.Locale;
 
 /**
@@ -9,13 +8,15 @@ import java.util.Locale;
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
 public abstract class Device implements Comparable<Device> {
-
     //Constants
     public static final String TAG = Device.class.getSimpleName();
     private static final String FORMAT_HTTP = "http://%s";
 
     //Attributes
     private String host;
+    private String name;
+    private String location;
+    private String hardware;
     private String username;
     private String password;
     private boolean connected;
@@ -59,6 +60,30 @@ public abstract class Device implements Comparable<Device> {
 
     public void setConnected(boolean connected) {
         this.connected = connected;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getHardware() {
+        return hardware;
+    }
+
+    public void setHardware(String hardware) {
+        this.hardware = hardware;
     }
 
     @Override

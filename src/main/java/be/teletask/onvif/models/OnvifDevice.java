@@ -1,7 +1,6 @@
 package be.teletask.onvif.models;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import java.util.List;
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
 public class OnvifDevice extends Device {
-
     //Constants
     public static final String TAG = OnvifDevice.class.getSimpleName();
 

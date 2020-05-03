@@ -17,14 +17,14 @@ public class OnvifResponse<T> {
     private String errorMessage;
     private String xml;
 
-    private OnvifRequest onvifRequest;
+    private OnvifRequest<T> onvifRequest;
 
     //Constructors
     public OnvifResponse(String xml) {
         this.xml = xml;
     }
 
-    public OnvifResponse(OnvifRequest onvifRequest) {
+    public OnvifResponse(OnvifRequest<T> onvifRequest) {
         this.onvifRequest = onvifRequest;
     }
 
@@ -62,7 +62,7 @@ public class OnvifResponse<T> {
         this.xml = xml;
     }
 
-    public OnvifRequest request() {
+    public OnvifRequest<T> request() {
         return onvifRequest;
     }
 }

@@ -44,9 +44,9 @@ public class DiscoveryPacket extends OnvifPacket {
         String data = "";
         if (mode.equals(DiscoveryMode.ONVIF)) {
             StringBuilder builder = new StringBuilder();
-            String header = String.format(Locale.getDefault(), OnvifXMLBuilder.getDiscoverySoapHeader(), uuid);
+            String header = OnvifXMLBuilder.getDiscoverySoapHeader(uuid);
             builder.append(header);
-            builder.append(OnvifXMLBuilder.getDiscoverySoapBody());
+            builder.append(OnvifXMLBuilder.getDiscoverySoapBody("Device"));
             builder.append(OnvifXMLBuilder.getEnvelopeEnd());
             data = builder.toString();
         } else if (mode.equals(DiscoveryMode.UPNP)) {
