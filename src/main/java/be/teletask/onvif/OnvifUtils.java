@@ -6,6 +6,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Tomas Verhelst on 03/09/2018.
@@ -60,7 +62,25 @@ public class OnvifUtils {
      * Util method for parsing.
      * Retrieve the XAddrs from the XmlPullParser given.
      */
-    public static String retrieveXAddrs(XmlPullParser xpp) throws IOException, XmlPullParserException {
+    public static UriAndScopes retrieveXAddrsAndScopes(XmlPullParser xpp) throws IOException, XmlPullParserException {
+        String[] scopes = new String[]{};
+        String uri = "";
+        int eventType = xpp.getEventType();
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+
+            if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("Scopes")) {
+                xpp.next();
+                scopes = xpp.getText().split("\\s+");
+                uri = OnvifUtils.retrieveXaddr(xpp);
+                break;
+            }
+            eventType = xpp.next();
+        }
+
+        return new UriAndScopes(uri, Arrays.asList(scopes));
+    }
+
+    private static String retrieveXaddr(XmlPullParser xpp) throws IOException, XmlPullParserException {
         String result = "";
         int eventType = xpp.getEventType();
         while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -68,7 +88,6 @@ public class OnvifUtils {
             if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("XAddrs")) {
                 xpp.next();
                 result = xpp.getText();
-                break;
             }
             eventType = xpp.next();
         }
@@ -76,5 +95,22 @@ public class OnvifUtils {
         return result;
     }
 
+    public static class UriAndScopes {
+        private String uri;
+        private List<String> scopes;
+
+        public UriAndScopes(String uri, List<String> scopes) {
+            this.uri = uri;
+            this.scopes = scopes;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public List<String> getScopes() {
+            return scopes;
+        }
+    }
 }
 

@@ -13,6 +13,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,10 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
     //Constants
     public static final String TAG = DiscoveryParser.class.getSimpleName();
     private static final String LINE_END = "\r\n";
-    private static String KEY_UPNP_LOCATION = "LOCATION: ";
-    private static String KEY_UPNP_SERVER = "SERVER: ";
-    private static String KEY_UPNP_USN = "USN: ";
-    private static String KEY_UPNP_ST = "ST: ";
+    private static final String KEY_UPNP_LOCATION = "LOCATION: ";
+    private static final String KEY_UPNP_SERVER = "SERVER: ";
+    private static final String KEY_UPNP_USN = "USN: ";
+    private static final String KEY_UPNP_ST = "ST: ";
 
     //Attributes
     private DiscoveryMode mode;
@@ -69,9 +70,17 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
                     getXpp().next();
                     String type = getXpp().getText();
 
-                    if (mode.equals(DiscoveryMode.ONVIF) && type.contains(DiscoveryType.NETWORK_VIDEO_TRANSMITTER.type)) {
-                        String uri = OnvifUtils.retrieveXAddrs(getXpp());
-                        devices.addAll(parseDevicesFromUri(uri));
+                    DiscoveryType discoveryType = null;
+                    try {
+                        discoveryType = DiscoveryType.valueOf(type.substring(3).toUpperCase());
+                    } catch (Exception e) {
+                        // failed to parse type
+                        e.printStackTrace();
+                    }
+
+                    if (mode.equals(DiscoveryMode.ONVIF) && discoveryType != null) {
+                        final OnvifUtils.UriAndScopes uriAndScopes = OnvifUtils.retrieveXAddrsAndScopes(getXpp());
+                        devices.addAll(parseDevicesFromUriAndScopes(uriAndScopes));
                     }
                 }
 
@@ -103,11 +112,24 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
         this.hostName = hostName;
     }
 
-    private List<OnvifDevice> parseDevicesFromUri(String uri) {
+    private List<OnvifDevice> parseDevicesFromUriAndScopes(OnvifUtils.UriAndScopes uriAndScopes) {
         List<OnvifDevice> devices = new ArrayList<>();
-        String[] uris = uri.split("\\s+");
+        String[] uris = uriAndScopes.getUri().split("\\s+");
+
         for (String address : uris) {
-            OnvifDevice device = new OnvifDevice(getHostName());
+            final URI url = URI.create(address);
+            final String parsedAddress = url.getScheme() + "://" + url.getHost() + (url.getPort() == 0 ? "" : ":" + url.getPort());
+
+            OnvifDevice device = new OnvifDevice(parsedAddress);
+            if (uriAndScopes.getScopes() != null) {
+                for (String scope : uriAndScopes.getScopes()) {
+                    final int indexOf = scope.lastIndexOf("/") + 1;
+                    if (scope.contains("onvif://www.onvif.org/hardware/")) device.setHardware(scope.substring(indexOf));
+                    if (scope.contains("onvif://www.onvif.org/location/")) device.setLocation(scope.substring(indexOf));
+                    if (scope.contains("onvif://www.onvif.org/name/")) device.setName(scope.substring(indexOf));
+                }
+            }
+
             device.addAddress(address);
             devices.add(device);
         }

@@ -1,6 +1,5 @@
 package be.teletask.onvif.requests;
 
-import be.teletask.onvif.listeners.OnvifMediaStreamURIListener;
 import be.teletask.onvif.models.OnvifMediaProfile;
 import be.teletask.onvif.models.OnvifType;
 
@@ -9,17 +8,17 @@ import be.teletask.onvif.models.OnvifType;
  * Created by Tomas Verhelst on 04/09/2018.
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
-public class GetMediaStreamRequest implements OnvifRequest {
+public class GetMediaStreamRequest implements OnvifRequest<String> {
 
     //Constants
     public static final String TAG = GetMediaStreamRequest.class.getSimpleName();
 
     //Attributes
     private final OnvifMediaProfile mediaProfile;
-    private final OnvifMediaStreamURIListener listener;
+    private final Listener<String> listener;
 
     //Constructors
-    public GetMediaStreamRequest(OnvifMediaProfile mediaProfile, OnvifMediaStreamURIListener listener) {
+    public GetMediaStreamRequest(OnvifMediaProfile mediaProfile, Listener<String> listener) {
         super();
         this.mediaProfile = mediaProfile;
         this.listener = listener;
@@ -31,7 +30,7 @@ public class GetMediaStreamRequest implements OnvifRequest {
         return mediaProfile;
     }
 
-    public OnvifMediaStreamURIListener getListener() {
+    public Listener<String> getListener() {
         return listener;
     }
 

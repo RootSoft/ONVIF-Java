@@ -6,7 +6,8 @@ package be.teletask.onvif.models;
  */
 public enum DiscoveryType {
     DEVICE(0, "Device"),
-    NETWORK_VIDEO_TRANSMITTER(1, "NetworkVideoTransmitter");
+    NETWORK_VIDEO_TRANSMITTER(1, "NetworkVideoTransmitter"),
+    NETWORK_VIDEO_DISPLAY(2, "NetworkVideoDisplay");
 
     public final int id;
     public final String type;

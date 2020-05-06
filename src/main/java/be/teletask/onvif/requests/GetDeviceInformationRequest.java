@@ -1,6 +1,6 @@
 package be.teletask.onvif.requests;
 
-import be.teletask.onvif.listeners.OnvifDeviceInformationListener;
+import be.teletask.onvif.models.OnvifDeviceInformation;
 import be.teletask.onvif.models.OnvifType;
 
 
@@ -8,23 +8,23 @@ import be.teletask.onvif.models.OnvifType;
  * Created by Tomas Verhelst on 04/09/2018.
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
-public class GetDeviceInformationRequest implements OnvifRequest {
+public class GetDeviceInformationRequest implements OnvifRequest<OnvifDeviceInformation> {
 
     //Constants
     public static final String TAG = GetDeviceInformationRequest.class.getSimpleName();
 
     //Attributes
-    private final OnvifDeviceInformationListener listener;
+    private final Listener<OnvifDeviceInformation> listener;
 
     //Constructors
-    public GetDeviceInformationRequest(OnvifDeviceInformationListener listener) {
+    public GetDeviceInformationRequest(Listener<OnvifDeviceInformation> listener) {
         super();
         this.listener = listener;
     }
 
     //Properties
 
-    public OnvifDeviceInformationListener getListener() {
+    public Listener<OnvifDeviceInformation> getListener() {
         return listener;
     }
 
