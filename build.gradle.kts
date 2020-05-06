@@ -1,9 +1,19 @@
+import com.github.lamba92.gradle.utils.*
+
+buildscript {
+    repositories {
+        maven("https://dl.bintray.com/lamba92/com.github.lamba92")
+        google()
+    }
+    dependencies {
+        classpath("com.github.lamba92", "lamba-gradle-utils", "1.0.6")
+    }
+}
+
 plugins {
     kotlin("jvm") version "1.3.72"
     id("com.jfrog.bintray") version "1.8.5"
     `maven-publish`
-    publishing
-    maven
 }
 
 repositories {
@@ -11,8 +21,8 @@ repositories {
     jcenter()
 }
 
-group = "be.teletask.onvif"
-version = "1.1.5"
+group = "com.github.lamba92"
+version = TRAVIS_TAG ?: "1.1.5"
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
@@ -23,34 +33,14 @@ dependencies {
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.3.4")
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
-}
-
-bintray {
-    user = System.getenv("bintrayUser")
-    key = System.getenv("bintrayApiKey")
-    setPublications("mavenJava")
-    with(pkg) {
-        repo = "maven"
-        name = "onvif-java"
-        desc = "ONVIF client library for Java and Kotlin"
-        userOrg = "szantogab"
-        setLicenses("MIT")
-        vcsUrl = "https://github.com/szantogab/ONVIF-Java"
-        with(version) {
-            name = project.version.toString()
-        }
-    }
-}
-
 val sourcesJar by tasks.creating(Jar::class) {
-    classifier = "sources"
+    archiveClassifier.set("sources")
     from(sourceSets["main"].allSource)
 }
 
-artifacts.add("archives", sourcesJar)
+publishing.publications.register<MavenPublication>("mavenJava") {
+    from(components["java"])
+    artifact(sourcesJar)
+}
+
+prepareForPublication()

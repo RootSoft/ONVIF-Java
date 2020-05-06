@@ -1,9 +1,8 @@
 language: java
-jdk: oraclejdk8
 
 before_install: chmod +x gradlew
 
-script: ./gradlew check
+script: ./gradlew build --console=plain
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -13,3 +12,10 @@ cache:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 
+deploy:
+  provider: script
+  script: ./gradlew bintrayUpload --console=plain
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true

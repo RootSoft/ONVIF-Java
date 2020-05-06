@@ -188,33 +188,19 @@ private void lockMulticast() {
 
 ## Download [![](https://jitpack.io/v/lamba92/ONVIF-Java.svg)](https://jitpack.io/#lamba92/ONVIF-Java)
 
+```kotlin
+repositories {
+    maven("https://dl.bintray.com/lamba92/com.github.lamba92")
+}
 
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-...
-<dependency>
-    <groupId>com.github.lamba92</groupId>
-    <artifactId>ONVIF-Java</artifactId>
-    <version>Tag</version>
-</dependency>
-
-```
-or Gradle:
-```groovy
 dependencies {
-    implementation 'com.github.lamba92:ONVIF-Java:{LATEST_TAG}'
+    implementation("com.github.lamba92:ONVIF-Java:{LATEST_TAG}")
 }
 ```
 
 ## Todos
 
  - Implementation ONVIF version management
- - Implementation PTZ
 
 ## Pull Requests
 ---
