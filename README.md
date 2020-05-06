@@ -1,6 +1,8 @@
 # ONVIF-Java
----
-[ ![Download](https://api.bintray.com/packages/tomasverhelst/ONVIF-Java/ONVIF-Java/images/download.svg) ](https://bintray.com/tomasverhelst/ONVIF-Java/ONVIF-Java/_latestVersion)
+
+[![Build Status](https://travis-ci.org/lamba92/ONVIF-Java.svg?branch=master)](https://travis-ci.org/lamba92/ONVIF-Java)
+[ ![Download](https://api.bintray.com/packages/lamba92/com.github.lamba92/ONVIF-Java/images/download.svg) ](https://bintray.com/lamba92/com.github.lamba92/ONVIF-Java/_latestVersion)
+
 
 <p align="center"> 
 <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/112012/onvif-converted.png?itok=yqR6_a6G">
@@ -16,6 +18,7 @@ ONVIF is an open industry forum that provides and promotes standardized interfac
   - UPnP device information
   - Easily extendable with your own requests
   - **Android supported!**
+  - [**Kotlin Coroutines support**](KOTLIN.md)
 
 ## Discovery
 ---
@@ -105,6 +108,19 @@ onvifManager.getMediaStreamURI(device, mediaProfiles.get(0), new OnvifMediaStrea
 });
 ```
 
+### Media Snapshot URI
+Returns a raw media snapshot URI that remains valid indefinitely even if the profile is changed.
+
+```java
+onvifManager.getMediaSnapshotURI(device, mediaProfiles.get(0), new OnvifMediaStreamURIListener() {
+    @Override
+    public void onMediaSnapshotURIReceived(@Nonnull OnvifDevice device, 
+                                        @Nonnull OnvifMediaProfile profile, @Nonnull String uri) {
+        
+    }
+});
+```
+
 ## UPnP
 ---
 
@@ -170,26 +186,21 @@ private void lockMulticast() {
 }
 ```
 
-Download
---------
+## Download [![](https://jitpack.io/v/lamba92/ONVIF-Java.svg)](https://jitpack.io/#lamba92/ONVIF-Java)
 
-Download [the latest JAR][2] or grab via Maven:
-```xml
-<dependency>
-  <groupId>be.teletask.onvif</groupId>
-  <artifactId>onvif</artifactId>
-  <version>1.0.0</version>
-</dependency>
-```
-or Gradle:
-```groovy
-compile 'be.teletask.onvif:onvif:1.0.0'
+```kotlin
+repositories {
+    maven("https://dl.bintray.com/lamba92/com.github.lamba92")
+}
+
+dependencies {
+    implementation("com.github.lamba92:ONVIF-Java:{LATEST_TAG}")
+}
 ```
 
 ## Todos
 
  - Implementation ONVIF version management
- - Implementation PTZ
 
 ## Pull Requests
 ---
