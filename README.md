@@ -1,7 +1,7 @@
 # ONVIF-Java
 
-[![](https://jitpack.io/v/lamba92/ONVIF-Java.svg)](https://jitpack.io/#lamba92/ONVIF-Java)
 [![Build Status](https://travis-ci.org/lamba92/ONVIF-Java.svg?branch=master)](https://travis-ci.org/lamba92/ONVIF-Java)
+[ ![Download](https://api.bintray.com/packages/lamba92/com.github.lamba92/ONVIF-Java/images/download.svg) ](https://bintray.com/lamba92/com.github.lamba92/ONVIF-Java/_latestVersion)
 
 
 <p align="center"> 
