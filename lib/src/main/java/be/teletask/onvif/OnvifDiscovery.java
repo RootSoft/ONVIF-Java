@@ -1,17 +1,30 @@
 package be.teletask.onvif;
 
-import be.teletask.onvif.listeners.DiscoveryCallback;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 import be.teletask.onvif.listeners.DiscoveryListener;
 import be.teletask.onvif.models.Device;
 import be.teletask.onvif.models.DiscoveryPacket;
 import be.teletask.onvif.models.OnvifPacket;
-
-
-import java.io.IOException;
-import java.net.*;
-import java.security.SecureRandom;
-import java.util.*;
-import java.util.concurrent.*;
 
 /**
  * The OnvifDiscovery class uses the Web Services Dynamic Discovery (WS-Discovery).
@@ -36,6 +49,7 @@ public class OnvifDiscovery {
 
     //Constants
     public static final String TAG = OnvifDiscovery.class.getSimpleName();
+    private static final boolean DEBUG = false;
     private static final String MULTICAST_ADDRESS_IPV4 = "239.255.255.250"; // Simple Service Discovery Protocol
     private static final String MULTICAST_ADDRESS_IPV6 = "[FF02::C]";
     private static int DISCOVERY_TIMEOUT = 10000;
@@ -97,6 +111,8 @@ public class OnvifDiscovery {
         //Get all interface addresses to send the UDP package on.
         List<InetAddress> addresses = getInterfaceAddresses();
 
+        if (DEBUG) for (InetAddress address : addresses) System.out.println("address: " + address);
+
         //Broadcast the message over all the network interfaces
         broadcast(addresses);
     }
@@ -126,7 +142,7 @@ public class OnvifDiscovery {
                     client.setBroadcast(true);
 
                     //Start a new thread to listen for incoming UDP packages
-                    new DiscoveryThread(client, discoveryTimeout, mode, new DiscoveryCallback() {
+                    new DiscoveryThread(client, discoveryTimeout, mode, new DiscoveryListener() {
 
                         @Override
                         public void onDiscoveryStarted() {
@@ -142,7 +158,9 @@ public class OnvifDiscovery {
 
                         @Override
                         public void onDevicesFound(List<Device> onvifDevices) {
-                            devices.addAll(onvifDevices);
+                            if (DEBUG) for (Device device : onvifDevices) System.out.println("found device: " + device);
+                            notifyDevicesFound(new ArrayList<>(onvifDevices));
+                            //devices.addAll(onvifDevices);
                         }
 
                         @Override
@@ -173,21 +191,18 @@ public class OnvifDiscovery {
                 executorService.shutdown();
 
                 latch.await(discoveryTimeout, TimeUnit.MILLISECONDS);
-                boolean cleanShutdown = executorService.awaitTermination(discoveryTimeout,
-                        TimeUnit.MILLISECONDS);
-
+                boolean cleanShutdown = executorService.awaitTermination(discoveryTimeout, TimeUnit.MILLISECONDS);
                 if (!cleanShutdown) {
                     executorService.shutdownNow();
                 }
 
-                notifyDevicesFound(new ArrayList<>(devices));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
+            notifyDiscoveryFinished();
         });
         monitor.shutdown();
-
     }
 
     private OnvifPacket createDiscoveryPacket() {
@@ -272,6 +287,11 @@ public class OnvifDiscovery {
     private void notifyDevicesFound(List<Device> devices) {
         if (discoveryListener != null)
             discoveryListener.onDevicesFound(devices);
+    }
+
+    private void notifyDiscoveryFinished() {
+        if (discoveryListener != null)
+            discoveryListener.onDiscoveryFinished();
     }
 
 }

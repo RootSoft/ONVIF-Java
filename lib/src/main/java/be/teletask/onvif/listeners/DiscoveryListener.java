@@ -14,4 +14,6 @@ public interface DiscoveryListener {
 
     void onDevicesFound(List<Device> devices);
 
+    void onDiscoveryFinished();
+
 }
