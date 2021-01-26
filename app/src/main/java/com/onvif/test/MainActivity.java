@@ -1,4 +1,4 @@
-package com.test.app;
+package com.onvif.test;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
