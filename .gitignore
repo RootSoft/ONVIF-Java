@@ -1,0 +1,16 @@
+*.iml
+.gradle
+/local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+# Android Studio project files, excluding project code style settings and required plugins
+.idea/*
+!.idea/codeStyleSettings.xml
+!.idea/codeStyles
+!.idea/externalDependencies.xml
+
+*.keystore
+signing.properties

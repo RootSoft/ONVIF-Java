@@ -1,7 +1,6 @@
 package be.teletask.onvif.models;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,4 +55,13 @@ public class OnvifDevice extends Device {
         return DeviceType.ONVIF;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("OnvifDevice{path=" + path + ", addresses=[");
+        for (String address : addresses) {
+            sb.append(address + ",");
+        }
+        sb.append("]}");
+        return sb.toString();
+    }
 }

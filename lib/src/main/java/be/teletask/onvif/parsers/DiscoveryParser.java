@@ -13,6 +13,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import java.util.List;
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
 public class DiscoveryParser extends OnvifParser<List<Device>> {
+    private static final boolean DEBUG = true;
 
     //Constants
     public static final String TAG = DiscoveryParser.class.getSimpleName();
@@ -107,7 +109,14 @@ public class DiscoveryParser extends OnvifParser<List<Device>> {
         List<OnvifDevice> devices = new ArrayList<>();
         String[] uris = uri.split("\\s+");
         for (String address : uris) {
-            OnvifDevice device = new OnvifDevice(getHostName());
+            OnvifDevice device;
+            try {
+                URI addressUri = URI.create(address);
+                if (DEBUG) System.out.println("addressURL: " + addressUri.getAuthority());
+                device = new OnvifDevice(addressUri.getAuthority());
+            } catch (Exception e) {
+                device = new OnvifDevice(getHostName());
+            }
             device.addAddress(address);
             devices.add(device);
         }
