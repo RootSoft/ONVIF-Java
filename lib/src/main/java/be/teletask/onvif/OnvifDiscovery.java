@@ -1,6 +1,5 @@
 package be.teletask.onvif;
 
-import be.teletask.onvif.listeners.DiscoveryCallback;
 import be.teletask.onvif.listeners.DiscoveryListener;
 import be.teletask.onvif.models.Device;
 import be.teletask.onvif.models.DiscoveryPacket;
@@ -126,7 +125,7 @@ public class OnvifDiscovery {
                     client.setBroadcast(true);
 
                     //Start a new thread to listen for incoming UDP packages
-                    new DiscoveryThread(client, discoveryTimeout, mode, new DiscoveryCallback() {
+                    new DiscoveryThread(client, discoveryTimeout, mode, new DiscoveryListener() {
 
                         @Override
                         public void onDiscoveryStarted() {
@@ -188,6 +187,7 @@ public class OnvifDiscovery {
         });
         monitor.shutdown();
 
+        notifyDiscoveryFinished();
     }
 
     private OnvifPacket createDiscoveryPacket() {
@@ -272,6 +272,11 @@ public class OnvifDiscovery {
     private void notifyDevicesFound(List<Device> devices) {
         if (discoveryListener != null)
             discoveryListener.onDevicesFound(devices);
+    }
+
+    private void notifyDiscoveryFinished() {
+        if (discoveryListener != null)
+            discoveryListener.onDiscoveryFinished();
     }
 
 }
