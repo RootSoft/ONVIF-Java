@@ -49,7 +49,7 @@ public class OnvifDiscovery {
 
     //Constants
     public static final String TAG = OnvifDiscovery.class.getSimpleName();
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String MULTICAST_ADDRESS_IPV4 = "239.255.255.250"; // Simple Service Discovery Protocol
     private static final String MULTICAST_ADDRESS_IPV6 = "[FF02::C]";
     private static int DISCOVERY_TIMEOUT = 10000;

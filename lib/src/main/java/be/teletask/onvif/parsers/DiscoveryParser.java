@@ -22,7 +22,7 @@ import java.util.List;
  * Copyright (c) 2018 TELETASK BVBA. All rights reserved.
  */
 public class DiscoveryParser extends OnvifParser<List<Device>> {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     //Constants
     public static final String TAG = DiscoveryParser.class.getSimpleName();
